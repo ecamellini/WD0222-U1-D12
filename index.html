@@ -45,7 +45,7 @@
   <div id="container">
     <h1>Shopping List</h1>
     <div id="list-inputs">
-      <input id="item-text-input" type="text" placeholder="Enter a new item..." />
+      <input id="item-text-input" onkeyup="addListItemOnEnter(event)" type="text" placeholder="Enter a new item..." />
       <button onclick="addListItem()">Add New Item</button>
       <!--
       HTML comes with many input tags. For example:
@@ -60,9 +60,12 @@
       -->
     </div>
     <div id="list-items">
+      <!--
+      Items will look like this, but we add them dynamically using JS.
       <div class="item" onclick="onItemClick(event)">Milk</div>
       <div class="item" onclick="onItemClick(event)">Biscuits</div>
       <div class="item" onclick="onItemClick(event)">Orange Jiuces</div>
+      -->
     </div>
   </div>
   <script>
@@ -103,6 +106,15 @@
 
       // 2) We select it/unselect it by toggling the selected class
       clickedItemNode.classList.toggle('selected')
+    }
+
+    // We want to insert an item also when the user presses Enter when typing into the text.
+    function addListItemOnEnter(eventInfo) {
+      let key = eventInfo.key
+
+      if (key === "Enter") {
+        addListItem(); // We already have a function to add a list item
+      }
     }
   </script>
 </body>
