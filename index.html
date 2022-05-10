@@ -34,7 +34,7 @@
   <div id="container">
     <h1>Shopping List</h1>
     <div id="list-inputs">
-      <input id="item-text-input" type="text" />
+      <input id="item-text-input" type="text" placeholder="Enter a new item..." />
       <button onclick="addListItem()">Add New Item</button>
       <!--
       HTML comes with many input tags. For example:
@@ -56,15 +56,27 @@
   </div>
   <script>
     function addListItem() {
-      // 1) We create the new node.
-      newItemNode = document.createElement('div')
+      let textInput = document.getElementById('item-text-input')
+      let itemToAdd = textInput.value
 
-      // 2) We customize it.
-      newItemNode.innerText = "Pasta"
-      newItemNode.classList.add('item')
+      if (itemToAdd === '') {
+        // We use an if to VALIDATE the input.
+        // To make sure that it respects some constraints.
+        alert("Text cannot be empty.")
+      } else {
+        // We also clear the input text
+        textInput.value = ""
 
-      // 3) We attach it to the DOM. To the parent node.
-      document.getElementById('list-items').appendChild(newItemNode)
+        // 1) We create the new node.
+        newItemNode = document.createElement('div')
+
+        // 2) We customize it.
+        newItemNode.innerText = itemToAdd
+        newItemNode.classList.add('item')
+
+        // 3) We attach it to the DOM. To the parent node.
+        document.getElementById('list-items').appendChild(newItemNode)
+      }
     }
   </script>
 </body>
