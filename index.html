@@ -87,9 +87,11 @@
         // 2) We customize it.
         newItemNode.innerText = itemToAdd
         newItemNode.classList.add('item')
+
         newItemNode.addEventListener("click", onItemClick) // JUST THE NAME, YOU DON'T HAVE TO CALL IT NOW.
-        // ^^^ These will automatically give the event parameter to the function
-        // Another way to do the same thing: newItemNode.onclick = onItemClick
+        // ^^^ These will automatically give the event info to the function as a parameter
+        // It is exactly like writing as tag attribute onclick="onItemClick(event)"
+        // Another way to do the same thing: newItemNode.onclick = onItemClick - but you cannot add more than one listener in this way.
 
         // 3) We attach it to the DOM. To the parent node.
         document.getElementById('list-items').appendChild(newItemNode)
@@ -116,6 +118,21 @@
         addListItem(); // We already have a function to add a list item
       }
     }
+
+    function sayHiToTheUser() {
+      alert("Hello, welcome to the shopping list!")
+    }
+    // When the browser FINISHED rendering the page, the HTML
+    // it immediatly fires the window.onload event.
+    window.onload = sayHiToTheUser
+    // ALWAYS USE THIS IF YOU WANT SOMETHING TO HAPPEN ON LOAD,
+    // RIGHT AFTER THE PAGE IS LOADED.
+    // For example, load the existing data from the server and add the list items accordingly
+
+    // ^^^ WHY IS THIS BETTER THAN JUST EXECUTING CODE HERE?
+    // Since this is executed after the DOM is created,
+    // we are sure that everything in the page already exits.
+    // We don't risk referring to a tag that does not exist yet.
   </script>
 </body>
 
