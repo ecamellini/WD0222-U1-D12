@@ -6,10 +6,67 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WD0222 - Unit 1 - Day 12</title>
+
+  <style>
+    #container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    #list-inputs {
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid grey;
+    }
+
+    .item {
+      box-shadow: 1px 1px 2px grey;
+      border: 1px solid grey;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      padding: 5px;
+      height: 20px;
+    }
+  </style>
 </head>
 
 <body>
+  <div id="container">
+    <h1>Shopping List</h1>
+    <div id="list-inputs">
+      <input id="item-text-input" type="text" />
+      <button onclick="addListItem()">Add New Item</button>
+      <!--
+      HTML comes with many input tags. For example:
+      <input id="date" type="date" />
+      <input id="color" type="color" />
+      <input id="checkbox" type="checkbox" />
+      <input id="password" type="password" />
 
+      You can get .value from all of them to get the info provided by the user.
+      For the checkbox, use .checked.
+      Look on MDN for info about other inputs.
+      -->
+    </div>
+    <div id="list-items">
+      <div class="item">Milk</div>
+      <div class="item">Biscuits</div>
+      <div class="item">Orange Jiuces</div>
+    </div>
+  </div>
+  <script>
+    function addListItem() {
+      // 1) We create the new node.
+      newItemNode = document.createElement('div')
+
+      // 2) We customize it.
+      newItemNode.innerText = "Pasta"
+      newItemNode.classList.add('item')
+
+      // 3) We attach it to the DOM. To the parent node.
+      document.getElementById('list-items').appendChild(newItemNode)
+    }
+  </script>
 </body>
 
 </html>
