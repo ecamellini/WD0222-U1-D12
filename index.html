@@ -26,6 +26,17 @@
       margin-bottom: 10px;
       padding: 5px;
       height: 20px;
+      cursor: pointer;
+    }
+
+    .item:hover {
+      box-shadow: 2px 2px 4px grey;
+      background-color: darkkhaki;
+    }
+
+    .selected {
+      box-shadow: 2px 2px 4px grey;
+      background-color: darkkhaki;
     }
   </style>
 </head>
@@ -49,9 +60,9 @@
       -->
     </div>
     <div id="list-items">
-      <div class="item">Milk</div>
-      <div class="item">Biscuits</div>
-      <div class="item">Orange Jiuces</div>
+      <div class="item" onclick="onItemClick(event)">Milk</div>
+      <div class="item" onclick="onItemClick(event)">Biscuits</div>
+      <div class="item" onclick="onItemClick(event)">Orange Jiuces</div>
     </div>
   </div>
   <script>
@@ -73,10 +84,25 @@
         // 2) We customize it.
         newItemNode.innerText = itemToAdd
         newItemNode.classList.add('item')
+        newItemNode.addEventListener("click", onItemClick) // JUST THE NAME, YOU DON'T HAVE TO CALL IT NOW.
+        // ^^^ These will automatically give the event parameter to the function
+        // Another way to do the same thing: newItemNode.onclick = onItemClick
 
         // 3) We attach it to the DOM. To the parent node.
         document.getElementById('list-items').appendChild(newItemNode)
       }
+    }
+
+    function onItemClick(eventInfo) { // This parameter will be an object, the event info
+
+      // In the event information, we can ALWAYS find a .taget property.
+      // The target property contains the node corresponding to the tag
+      // targeted by the event. For example, for a click event, it
+      // is the clicked tag.
+      let clickedItemNode = eventInfo.target
+
+      // 2) We select it/unselect it by toggling the selected class
+      clickedItemNode.classList.toggle('selected')
     }
   </script>
 </body>
