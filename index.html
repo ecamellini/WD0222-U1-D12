@@ -9,7 +9,7 @@
 
   <style>
     #container {
-      max-width: 400px;
+      max-width: 420px;
       margin: 0 auto;
     }
 
@@ -47,6 +47,7 @@
     <div id="list-inputs">
       <input id="item-text-input" onkeyup="addListItemOnEnter(event)" type="text" placeholder="Enter a new item..." />
       <button onclick="addListItem()">Add New Item</button>
+      <button onclick="deleteSelectedItems()">Delete Selected Items</button>
       <!--
       HTML comes with many input tags. For example:
       <input id="date" type="date" />
@@ -116,6 +117,18 @@
 
       if (key === "Enter") {
         addListItem(); // We already have a function to add a list item
+      }
+    }
+
+    function deleteSelectedItems() {
+      // 1) We want to get the items to delete...
+      let itemsToDelete = document.getElementsByClassName('selected')
+
+      // 2) For each one of them, we perform the delete
+      for (let i = 0; i < itemsToDelete.length; i++) {
+        let item = itemsToDelete[i]
+        // item.style.display = 'none' // We can hide the element through the display CSS property
+        item.hidden = true // Or we can use the hidden DOM property and set it to true
       }
     }
 
